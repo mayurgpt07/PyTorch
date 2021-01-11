@@ -5,7 +5,7 @@ def train(data_loader, model, optimizer, device):
     model.train()
 
     for data in data_loader:
-        print(data)
+        # print(data)
         reviews = data['review']
         targets = data['target']
         
@@ -38,7 +38,7 @@ def evaluate(data_loader, model, device):
             predictions = predictions.cpu().numpy().tolist()
             targets = data['target'].cpu().numpy().tolist()
 
-            final_predictions.extend(prediction)
+            final_predictions.extend(predictions)
             final_targets.extend(targets)
 
     return final_predictions, final_targets

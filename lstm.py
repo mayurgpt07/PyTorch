@@ -22,8 +22,8 @@ class LSTM(nn.Module):
         x, _ = self.lstm(x)
         avg_pool = torch.mean(x,1)
         max_pool, _ = torch.max(x,1)
-        print('Average Pool', avg_pool)
-        print('\n MAx Pool', max_pool)
+        # print('Average Pool', avg_pool)
+        # print('\n MAx Pool', max_pool)
         out = torch.cat((avg_pool, max_pool), 1)
         out = self.out(out)
 
