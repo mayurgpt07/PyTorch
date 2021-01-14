@@ -15,9 +15,10 @@ def train(data_loader, model, optimizer, device):
         optimizer.zero_grad()
 
         predictions = model(reviews)
-
-        loss = nn.BCEWithLogitsLoss()(predictions, targets.view(-1,1))
-        loss.backward()
+        
+        loss = nn.BCEWithLogitsLoss()
+        output = loss(predictions, targets.view(-1,1))
+        output.backward()
         optimizer.step()
 
 def evaluate(data_loader, model, device):

@@ -53,7 +53,7 @@ def run(df, fold):
     valid_data_loader = torch.utils.data.DataLoader(valid_dataset, batch_size = config.VALID_BATCH_SIZE, num_workers = 2)
 
     print('Loading Embeddings')
-    embedding_dict = load_vectors('./wiki-news-300d-1M.vec')
+    embedding_dict = load_vectors('./crawl-300d-2M.vec')
     print('Embeddings Loaded')
     embedding_matrix = create_embedding_matrix(tokenizer.word_index, embedding_dict)
 
@@ -62,7 +62,7 @@ def run(df, fold):
 
     model.to(device)
 
-    optimizer = torch.optim.Adam(model.parameters(), lr = 1e-13)
+    optimizer = torch.optim.Adam(model.parameters(), lr = 0.1)
 
     print('Training model')
 
@@ -85,8 +85,9 @@ def run(df, fold):
         else:
             early_stopping_counter +=1
 
-        if early_stopping_counter > 2:
-            break
+        # if early_stopping_counter > 2:
+        #     print(early_stopping_counter)
+        #     break
 
 if __name__ == '__main__':
 
